@@ -30,35 +30,44 @@
 
 // End
 
-currentDozenHours.setAttribute("class", "currentValue");
-currentDozenHours.textContent = "";
+// algorithm  
 
-dozenHours.appendChild(currentDozenHours);
-setTimeout(() => {
-  dozenHours.removeChild(currentDozenHours);
-}, 700);
+  currentDozenHours.setAttribute("class", "currentValue");
+  currentDozenHours.textContent = "";
+
+  dozenHours.appendChild(currentDozenHours);
+  setTimeout(() => {
+    dozenHours.removeChild(currentDozenHours);
+  }, 700);
 
 
-let clock = new Date("2024-01-31 00:00:00").getTime()
+  let clock = new Date("2024-01-31 00:00:00").getTime()
 
-let day = new Date().getDate()
-let month = new Date().getMonth()
-let year = new Date().getFullYear()
+  function timer(data){
 
-let hours = new Date().getHours()
-let minutes = new Date().getMinutes()
-let seconds = new Date().getSeconds()
+  let day = new Date().getDate()
+  let month = new Date().getMonth()
+  let year = new Date().getFullYear()
 
-let time = new Date(`${year}-${month}-${day} ${hours}:${minutes}:${seconds}`).getTime()
+  let hours = new Date().getHours()
+  let minutes = new Date().getMinutes()
+  let seconds = new Date().getSeconds()
 
-let timeDiff =  clock - time
+  let time = new Date(`${year}-${month}-${day} ${hours}:${minutes}:${seconds}`).getTime()
 
-let days = timeDiff/(3600*1000*24)
-let hoursTime = (timeDiff%(3600*1000*24))/3600
+  let timeDiff = (data - time)/1000
 
-// console.log("Clock : ",clock," \nTime : ",time)
-// console.log(" \nDays : ",days)
-// console.log(" \nHours : ",(timeDiff%(3600*1000*24)))
-// console.log(new Date(`${year}-${month}-${day}`))
+  let days = Math.trunc(timeDiff/(3600*24))
+  let daysMod = timeDiff%(3600*24)
+  let hoursMod = daysMod%(3600)
+  let minutesMod = hoursMod%(60)
+  let hoursTime = Math.trunc(daysMod/3600)
+  let minutesTime = Math.trunc(hoursMod/60)
+  let secondsTime = minutesMod
 
-console.log(new Date().getMonth())
+  return {days,hours:hoursTime,minutes:minutesTime,seconds:secondsTime}
+
+  }
+
+  timer(clock)
+//End
