@@ -71,3 +71,20 @@
 
   timer(clock)
 //End
+
+//  Display 
+
+  setInterval(()=>{
+
+    let time = timer(clock)
+
+    let days = timer.days
+    let hours = timer.hours
+    let minutes = timer.minutes
+    let seconds = timer.seconds
+
+    
+
+  },700)
+
+// End
