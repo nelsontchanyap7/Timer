@@ -81,5 +81,4 @@ body{
     display: inline-block;
     background-color: transparent;
     color:rgb(5, 147, 229);
-    animation: display .7s ease-out forwards;
 }

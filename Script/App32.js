@@ -197,6 +197,6 @@
 
   setInterval(()=>{
     timerProcess(clock)
-  },700)
+  },1000)
 
 // End
