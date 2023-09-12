@@ -1,4 +1,4 @@
-// Variables Initialization
+//   Initialization
   let centuryDays = document.querySelector(".Days .Century");
   let currentCenturyDays = document.createElement("span");
   let dozenDays = document.querySelector(".Days .Dozen");
@@ -22,7 +22,20 @@
   let dozenSeconds = document.querySelector(".Seconds .Dozen");
   let currentDozenSeconds = document.createElement("span");
   let unitSeconds = document.querySelector(".Seconds .Unit");
-  let currentUnitseconds = document.createElement("span");
+  let currentUnitSeconds = document.createElement("span");
+
+  centuryDays.textContent = localStorage.getItem("daysCentury")
+  dozenDays.textContent = localStorage.getItem("daysDozen")
+  unitDays.textContent = localStorage.getItem("daysUnit")
+    
+  dozenHours.textContent = localStorage.getItem("hoursDozen")
+  unitHours.textContent = localStorage.getItem("hoursUnit")
+  
+  dozenMinutes.textContent = localStorage.getItem("minutesDozen")
+  unitMinutes.textContent = localStorage.getItem("minutesUnit")
+    
+  dozenSeconds.textContent = localStorage.getItem("secondsDozen")
+  unitSeconds.textContent = localStorage.getItem("secondsUnit")
 
 // End
 
@@ -30,6 +43,10 @@
 
 
   let clock = new Date("2024-01-31 00:00:00").getTime()
+  let daysCentury , daysDozen , daysUnit = "0"
+  let hoursDozen , hoursUnit = "0"
+  let minutesDozen , minutesUnit = "0"
+  let secondsDozen , secondsUnit = "0"
 
 
   function timer(data){
@@ -58,18 +75,11 @@
 
   }
 
-  timer(clock)
-//End
-
-//  Display 
-
-  setInterval(()=>{
-
-    let time = timer(clock)
+  function timerProcess(data){
+    let time = timer(data)
  
     let days = time.days
     let daysString = days.toString().length
-    let daysCentury , daysDozen , daysUnit = "0"
   
     let daysTable  = []
 
@@ -99,7 +109,6 @@
 
     let hours = time.hours
     hoursString = hours.toString().length
-    let hoursDozen , hoursUnit = "0"
 
     let hoursTable = []
 
@@ -118,7 +127,6 @@
 
     let minutes = time.minutes
     minutesString = minutes.toString().length
-    let minutesDozen , minutesUnit = "0"
 
     let minutesTable = []
 
@@ -138,7 +146,6 @@
 
     let seconds = time.seconds
     secondsString = seconds.toString().length
-    let secondsDozen , secondsUnit = "0"
 
     let secondsTable = []
 
@@ -167,8 +174,29 @@
     
     dozenSeconds.textContent = secondsDozen
     unitSeconds.textContent = secondsUnit
-    
 
+    localStorage.setItem("daysCentury",daysCentury)
+    localStorage.setItem("daysDozen",daysDozen)
+    localStorage.setItem("daysUnit",daysUnit)
+
+    localStorage.setItem("hoursDozen",hoursDozen)
+    localStorage.setItem("hoursUnit",hoursUnit)
+
+    localStorage.setItem("minutesDozen",minutesDozen)
+    localStorage.setItem("minutesUnit",minutesUnit)
+
+    localStorage.setItem("secondsDozen",secondsDozen)
+    localStorage.setItem("secondsUnit",secondsUnit)
+  }
+
+  timerProcess(clock)
+
+//End
+
+//  Data Rendering 
+
+  setInterval(()=>{
+    timerProcess(clock)
   },700)
 
 // End
